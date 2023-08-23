@@ -1,0 +1,29 @@
+import wollok.game.*
+import auto.*
+import obstaculos.*
+
+program miPrimerWollokGame {
+	game.title("autosLocos")
+	// límites del tablero de juego
+	game.width(14)
+	game.height(8)
+
+	// fondo del tablero de juego
+	game.boardGround("empedrado.jpg")
+	
+	// agregamos a nuestro objetos
+	//auto
+	game.addVisualCharacter(auto)
+	game.say(auto, "Estoy Listo!")
+	//pared
+	game.addVisual(pared1)
+	
+	//acciones
+	game.whenCollideDo(pared1, { elemento => 
+    elemento.subir()
+    game.say(auto, auto.choque())
+  })
+	
+	// que arranque el juego!
+	game.start()
+}
